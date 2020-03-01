@@ -1,15 +1,13 @@
 import numpy as np
-
 import matplotlib.pyplot as plt
 
 import prepare_data
 from choose_parents import choose_parents, predict
 from reproduce import reproduce
 from parameters import genetic as parameters
+from parameters import filename
 from mutate import mutate
 from metrics import nrmse
-
-filename = './data/5.txt'
 
 training_object_count, feature_count, training_features, training_labels, test_features, test_labels\
     = prepare_data.read_from_file(filename)
@@ -22,10 +20,6 @@ num_genes = feature_count
 
 chromosomes_shape = (num_chromosomes, num_genes + 1)
 chromosomes = np.random.uniform(low=-parameters['random_gene_amplitude'], high=parameters['random_gene_amplitude'], size=chromosomes_shape)
-
-plt.plot(predict(training_features, chromosomes[0]))
-plt.plot(training_labels)
-plt.show()
 
 for generation in range(num_generations):
     parents = choose_parents(chromosomes, training_features, training_labels, num_parents)

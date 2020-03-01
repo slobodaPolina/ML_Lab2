@@ -1,3 +1,6 @@
+from sklearn import preprocessing
+
+
 def read_from_file(filename):
     file = open(filename)
 
@@ -24,4 +27,11 @@ def read_from_file(filename):
 
 
 def prepare_data(features, labels):
+
+    features = normalize(features)
+
     return features, labels
+
+
+def normalize(features):
+    return preprocessing.normalize(features, axis=0)
