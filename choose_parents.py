@@ -1,13 +1,16 @@
 import metrics
 import numpy as np
 
+from regularization import lasso
+from parameters import genetic as parameters
+
 
 def choose_parents(chromosomes, features, labels, num_parents):
     fitnesses = []
 
     for chromosome in chromosomes:
         predicted_labels = predict(features, chromosome)
-        fitnesses.append({'chromosome': chromosome, 'fitness': fitness(predicted_labels, labels)})
+        fitnesses.append({'chromosome': chromosome, 'fitness': fitness(predicted_labels, labels, chromosome)})
 
     fitnesses = sorted(fitnesses, key=lambda k: k['fitness'], reverse=True)
 
@@ -25,6 +28,6 @@ def predict(features, genes):
     return predicted_labels
 
 
-def fitness(predicted_labels, actual_labels):
-    return -metrics.nrmse(predicted_labels, actual_labels)
+def fitness(predicted_labels, actual_labels, chromosome):
+    return -(metrics.nrmse(predicted_labels, actual_labels) + lasso(parameters['regularization_strength'], chromosome))
 

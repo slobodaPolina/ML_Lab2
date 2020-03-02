@@ -6,9 +6,10 @@ least_squares = {
 }
 
 genetic = {
-    'num_chromosomes': 16,
+    'num_chromosomes': 20,
     'parent_proportion': 1/2,
-    'num_generations': 50,
+    'num_generations': 10,
     'random_gene_amplitude': 1000,
-    'mutation_amplitude': 10000
+    'mutation_amplitude': 2,
+    'regularization_strength': 0.000001
 }

@@ -2,7 +2,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 import prepare_data
-from choose_parents import choose_parents, predict
+from choose_parents import choose_parents, predict, fitness
 from reproduce import reproduce
 from parameters import genetic as parameters
 from parameters import filename
@@ -29,6 +29,7 @@ for generation in range(num_generations):
     chromosomes = np.concatenate((parents, children), axis=0)
 
     print('Generation {}. Best training NRMSE: {}'.format(generation+1, nrmse(predict(training_features, parents[0]), training_labels)))
+    print('Generation {}. Best fitness: {}'.format(generation+1, fitness(predict(training_features, parents[0]), training_labels, parents[0])))
 
 test_chromosome = choose_parents(chromosomes, training_features, training_labels, num_parents)[0]
 print('Test NRMSE: {}'.format(nrmse(predict(test_features, test_chromosome), test_labels)))
