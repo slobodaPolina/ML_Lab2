@@ -19,13 +19,18 @@ test_features, test_labels = prepare_data.prepare_data(test_features, test_label
 #predicted_values = np.dot(model, np.transpose(test_features))
 
 model = Ridge(solver='lsqr', max_iter=parameters['iterations'], alpha=parameters['regularization_strength'])
+
 model.fit(training_features, training_labels)
-predicted_values = model.predict(test_features)
 
-test_nrmse = nrmse(predicted_values, test_labels)
+training_predicted_values = model.predict(training_features)
+training_nrmse = nrmse(training_predicted_values, training_labels)
 
-plt.plot(predicted_values)
-plt.plot(test_labels)
-plt.show()
+test_predicted_values = model.predict(test_features)
+test_nrmse = nrmse(test_predicted_values, test_labels)
 
+#plt.plot(predicted_values)
+#plt.plot(test_labels)
+#plt.show()
+
+print('Training NRMSE: {}'.format(training_nrmse))
 print('Test NRMSE: {}'.format(test_nrmse))

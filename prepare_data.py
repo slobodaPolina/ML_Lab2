@@ -1,4 +1,5 @@
 from sklearn import preprocessing
+import numpy as np
 
 
 def read_from_file(filename):
