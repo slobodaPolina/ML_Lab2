@@ -5,6 +5,12 @@ least_squares = {
     'regularization_strength': 100.0
 }
 
+gradient_descent = {
+    'num_iterations': 10,
+    'regularization_strength': 100.0,
+    'learning_rate': 0.1
+}
+
 genetic = {
     'num_chromosomes': 20,
     'parent_proportion': 1/2,
@@ -13,3 +19,5 @@ genetic = {
     'mutation_amplitude': 2,
     'regularization_strength': 0.000001
 }
+
+cross_val_folds = 4

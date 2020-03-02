@@ -34,6 +34,6 @@ for generation in range(num_generations):
 test_chromosome = choose_parents(chromosomes, training_features, training_labels, num_parents)[0]
 print('Test NRMSE: {}'.format(nrmse(predict(test_features, test_chromosome), test_labels)))
 
-plt.plot(predict(test_features, test_chromosome))
-plt.plot(test_labels)
-plt.show()
+#plt.plot(predict(test_features, test_chromosome))
+#plt.plot(test_labels)
+#plt.show()
